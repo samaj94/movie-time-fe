@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-import { useHistory } from 'react-router-dom';
 import { Auth } from "aws-amplify";
 
 import { useAppContext } from '../../libs/contextLib';
