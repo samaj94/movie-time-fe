@@ -19,7 +19,6 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
 
   const { userHasAuthenticated } = useAppContext();
-  const history = useHistory();
 
   function validateForm() {
     return fields.email.length > 0 && fields.password.length > 0;
@@ -33,7 +32,6 @@ export default function Login() {
       await Auth.signIn(fields.email, fields.password);
 
       userHasAuthenticated(true);
-      history.push('/');
     } catch (e) {
       onError(e.message);
       setIsLoading(false);
