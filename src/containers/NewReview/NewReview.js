@@ -16,6 +16,7 @@ export default function NewReview() {
     type: "Movie"
   })
   const [isLoading, setIsLoading] = useState(false);
+  const [didFail, setDidFail] = useState(false);
 
   function validateForm() {
     return fields.description.length > 0 && fields.title.length > 0;
@@ -25,10 +26,14 @@ export default function NewReview() {
     event.preventDefault();
 
     setIsLoading(true);
-    console.log('Fields', fields);
-    await createNote({ fields });
-    console.log('SUBMITTED');
-    // history.push("/");
+    setDidFail(false);
+    try {
+      await createNote({ fields });
+      history.push("/");
+    } catch (e) {
+      setDidFail(true);
+      console.log('Error', e);
+    }
 
     setIsLoading(false);
   };
@@ -83,6 +88,7 @@ export default function NewReview() {
           Create
         </LoaderButton>
       </Form>
+      { didFail && (<div>Failed to submit review. Check console for error.</div>)}
     </div>
   );
 };

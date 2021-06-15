@@ -5,6 +5,7 @@ import Home from "./containers/Home";
 import NotFound from "./containers/NotFound";
 import Login from "./containers/Login";
 import Signup from "./containers/SignUp";
+import Review from "./containers/Review";
 import NewReview from "./containers/NewReview";
 
 export default function Routes() {
@@ -21,6 +22,9 @@ export default function Routes() {
       </Route>
       <Route exact path="/new">
         <NewReview />
+      </Route>
+      <Route exact path="/reviews/:id">
+        <Review />
       </Route>
       {/* Finally, catch all unmatched routes */}
       <Route>
