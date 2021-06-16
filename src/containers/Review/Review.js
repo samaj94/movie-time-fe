@@ -1,12 +1,12 @@
 import { API } from "aws-amplify";
 import { useEffect, useState } from "react";
 import { BsFillStarFill, BsStarHalf, BsStar } from "react-icons/bs";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { onError } from "../../libs/errorLib";
 
 export default function Review() {
   const { id } = useParams();
-  const [title, setTitle] = useState("");
+  const [contentTitle, setContentTitle] = useState("");
   const [description, setDescription] = useState("");
   const [rating, setRating] = useState(0);
 
@@ -18,9 +18,9 @@ export default function Review() {
     async function onLoad() {
       try {
         const review = await loadReview();
-        const { description, rating, title } = review;
-        console.log('HERRE');
-        setTitle(title);
+        const { description, rating, contentTitle } = review;
+
+        setContentTitle(contentTitle);
         setDescription(description);
         setRating(rating);
       } catch (e) {
@@ -50,7 +50,7 @@ export default function Review() {
 
   return (
     <div className="Review">
-      <h1>{title}</h1>
+      <h1>{contentTitle}</h1>
       <br />
       <div>{rating}</div>
       <div>
@@ -58,6 +58,7 @@ export default function Review() {
       </div>
       <br />
       <div>{description}</div>
+      <Link to={`/reviews/edit/${id}`}>Edit</Link>
     </div>
   );
 };

@@ -43,11 +43,11 @@ export default function Home() {
           </ListGroup.Item>
         </LinkContainer>
         {
-          reviews.map(({ reviewId, title, createdAt }) => (
+          reviews.map(({ reviewId, contentTitle, createdAt }) => (
             <LinkContainer key={reviewId} to={`/reviews/${reviewId}`}>
               <ListGroup.Item action>
                 <span className="font-weight-bold">
-                  {title}
+                  {contentTitle}
                 </span>
                 <br />
                 <span className="text-muted">

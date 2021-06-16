@@ -7,6 +7,8 @@ import Login from "./containers/Login";
 import Signup from "./containers/SignUp";
 import Review from "./containers/Review";
 import NewReview from "./containers/NewReview";
+import EditReview from "./containers/EditReview";
+
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
@@ -27,6 +29,9 @@ export default function Routes() {
       </AuthenticatedRoute >
       <AuthenticatedRoute  exact path="/reviews/:id">
         <Review />
+      </AuthenticatedRoute >
+      <AuthenticatedRoute  exact path="/reviews/edit/:id">
+        <EditReview />
       </AuthenticatedRoute >
       {/* Finally, catch all unmatched routes */}
       <Route>
