@@ -2,13 +2,21 @@ import React, { useState } from "react";
 import { API } from "aws-amplify";
 import { useHistory } from "react-router-dom";
 
+import Button from "react-bootstrap/Button";
 import LoaderButton from "../../components/LoaderButton/LoaderButton";
+import MovieSearchItem from "../../components/MovieSearchItem/MovieSearchItem";
+import './NewReview.css';
+
 import Form from "react-bootstrap/Form";
 import { useFormFields } from "../../libs/hooksLib";
+import searchMovies from "../../api/searchMovie";
 
 export default function NewReview() {
   const history = useHistory();
 
+  const [titleResults, setTitleResults] = useState([]);
+  const [showTitleSearch, setShowTitleSearch] = useState(true);
+  const [contentObj, setContentObj] = useState({});
   const [fields, handleFieldChange] = useFormFields({
     description: "",
     contentTitle: "",
@@ -27,8 +35,15 @@ export default function NewReview() {
 
     setIsLoading(true);
     setDidFail(false);
+    const info = {
+      ...fields,
+      poster: contentObj.Poster,
+      contentTitle: contentObj.Title,
+      imdbId: contentObj.imdbID
+    };
+
     try {
-      await createNote({ fields });
+      await createReview(info);
       history.push("/");
     } catch (e) {
       setDidFail(true);
@@ -38,24 +53,66 @@ export default function NewReview() {
     setIsLoading(false);
   };
 
-  function createNote(note) {
+  function createReview(info) {
     return API.post("reviews", "/reviews", {
-      body: fields
+      body: info
     });
+  }
+
+  async function handleTitleSearch(event) {
+    event.preventDefault();
+    try {
+      const results = await searchMovies(event.target[0].value);
+      setTitleResults(results);
+    } catch (e) {
+      console.log('Error', e);
+    }
+  }
+
+  function contentClicked(item) {
+    setContentObj(item);
+    setShowTitleSearch(false);
   }
 
   return (
     <div className="NewReview">
+      {showTitleSearch ? (
+        <>
+          <Form onSubmit={handleTitleSearch}>
+            <Form.Group size="sm" controlId="contentTitle">
+                <Form.Label>Title</Form.Label>
+                <Form.Control
+                  autoFocus
+                  type="text"
+                  value={fields.contentTitle}
+                  onChange={handleFieldChange}
+                />
+              </Form.Group>
+              <LoaderButton
+                block
+                type="submit"
+                size="med"
+                isLoading={isLoading}
+              >
+              Search
+            </LoaderButton>
+          </Form>
+          { titleResults.length > 0 && (
+            <ul className="MovieResults">
+              {titleResults.map((t) => <button onClick={() => contentClicked(t)}><MovieSearchItem {...t} /></button>)}
+              </ul>
+            )}
+        </>
+        ) : (
+          <div>
+            <MovieSearchItem {...contentObj} />
+            <Button onClick={() => setShowTitleSearch(true)}>
+              Change
+            </Button>
+          </div>
+        )
+      }
       <Form onSubmit={handleSubmit}>
-        <Form.Group size="sm" controlId="contentTitle">
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            autoFocus
-            type="text"             
-            value={fields.contentTitle}
-            onChange={handleFieldChange}
-          />
-        </Form.Group>
         <Form.Group controlId="rating">
           <Form.Label>Rating: {fields.rating}</Form.Label>
           <Form.Control type="range" min="0" max="10" step="0.5" value={fields.rating} onChange={handleFieldChange} />

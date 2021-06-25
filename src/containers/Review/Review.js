@@ -8,7 +8,9 @@ export default function Review() {
   const { id } = useParams();
   const [contentTitle, setContentTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [poster, setPoster] = useState("");
   const [rating, setRating] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     function loadReview() {
@@ -17,18 +19,21 @@ export default function Review() {
   
     async function onLoad() {
       try {
-        const review = await loadReview();
-        const { description, rating, contentTitle } = review;
+        setLoading(false);
+        const data = await loadReview();
+        const { review, content } = data;
 
-        setContentTitle(contentTitle);
-        setDescription(description);
-        setRating(rating);
+        setContentTitle(review.contentTitle);
+        setDescription(review.description);
+        setRating(review.rating);
+        setPoster(content.poster);
       } catch (e) {
         onError(e);
       }
     }
 
     onLoad();
+    setLoading(false);
   }, [id]);
 
   function renderStars() {
@@ -48,8 +53,9 @@ export default function Review() {
     return(final);
   }
 
-  return (
+  return loading ? <div /> : (
     <div className="Review">
+      <img src={poster} />
       <h1>{contentTitle}</h1>
       <br />
       <div>{rating}</div>

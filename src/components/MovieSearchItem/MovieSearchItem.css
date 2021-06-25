@@ -1,0 +1,24 @@
+.MovieSearchItem {
+  padding: 10px;
+  list-style-type: none;
+  min-width: 200px;
+}
+
+.MovieSearchItem img {
+  max-width: 125px;
+  height: auto;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.MovieSearchItem h1 {
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+}
+
+.MovieSearchItem h2 {
+  font-weight: 300;
+  font-size: 20px;
+  text-align: center;
+}
