@@ -66,7 +66,13 @@ export default function Review() {
         </h2>
       </div>
       <br />
-      <p>{description}</p>
+      {
+        description.split('\n').map((par) => {
+          if(par.length > 0) {
+              return <p>{par}</p>;
+          }
+        })
+      }
       <Link to={`/reviews/edit/${id}`}>Edit</Link>
     </div>
   );
