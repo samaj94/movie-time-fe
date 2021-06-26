@@ -4,6 +4,8 @@ import { BsFillStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 import { useParams, Link } from "react-router-dom";
 import { onError } from "../../libs/errorLib";
 
+import './Review.css';
+
 export default function Review() {
   const { id } = useParams();
   const [contentTitle, setContentTitle] = useState("");
@@ -55,15 +57,16 @@ export default function Review() {
 
   return loading ? <div /> : (
     <div className="Review">
-      <img src={poster} />
-      <h1>{contentTitle}</h1>
+      <img src={poster} alt={contentTitle || 'Movie Poster'} />
+      <h1>{contentTitle} | {rating}</h1>
       <br />
-      <div>{rating}</div>
-      <div>
-        {renderStars()}
+      <div className="rating">
+        <h2>
+          {renderStars()}
+        </h2>
       </div>
       <br />
-      <div>{description}</div>
+      <p>{description}</p>
       <Link to={`/reviews/edit/${id}`}>Edit</Link>
     </div>
   );
