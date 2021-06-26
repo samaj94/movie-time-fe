@@ -71,6 +71,8 @@ export default function Review() {
           if(par.length > 0) {
               return <p>{par}</p>;
           }
+
+          return null;
         })
       }
       <Link to={`/reviews/edit/${id}`}>Edit</Link>
