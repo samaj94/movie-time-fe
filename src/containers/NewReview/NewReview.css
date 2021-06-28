@@ -3,3 +3,28 @@
   flex-direction: row;
   overflow-x: scroll;
 }
+
+.NewReview label {
+  text-transform: lowercase;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+
+.NewReview textarea {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  letter-spacing: .5px;
+  font-size: 20px;
+  height: 500px;
+}
+
+
+.NewReview .rating-item {
+  font-weight: 400;
+}
+
+.NewReview button {
+  font-weight: 800;
+  text-transform: lowercase;
+  letter-spacing: .5px;
+}

@@ -4,6 +4,25 @@
 }
 
 .Home .lander h1 {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Work Sans", sans-serif;
   font-weight: 600;
+}
+
+.Home .add-review {
+  text-transform: lowercase;
+}
+
+.Home .content-title {
+  font-family: 'Bebas Neue', cursive;
+}
+
+.Home .flex-group {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.Home .flex-rating {
+  font-size: 24px;
+  padding-top: 10px;
 }

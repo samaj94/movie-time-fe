@@ -1,2 +1,9 @@
-.App {
+.brand-name {
+  font-size: 40px;
+  letter-spacing: 1px;
+}
+
+.navbar-nav {
+  text-transform: lowercase;
+  font-weight: 800;
 }

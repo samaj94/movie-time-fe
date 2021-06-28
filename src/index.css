@@ -1,20 +1,32 @@
 h1, h2, h3, h4, h5, h6 {
-  font-family: "PT Serif", serif;
+  font-family: 'Bebas Neue', cursive;
+}
+
+.navbar {
+  font-family: 'Bebas Neue', cursive;
+}
+
+div {
+  font-family: 'EB Garamond', serif;
 }
 
 body {
   margin: 0;
   padding: 0;
   color: #333;
-  font-size: 16px;
+  font-size: 20px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'EB Garamond', serif;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.italic {
+  font-style: italic;
 }
 
 select.form-control,

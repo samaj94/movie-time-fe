@@ -59,7 +59,6 @@ export default function Review() {
     <div className="Review">
       <img src={poster} alt={contentTitle || 'Movie Poster'} />
       <h1>{contentTitle} | {rating}</h1>
-      <br />
       <div className="rating">
         <h2>
           {renderStars()}
@@ -69,7 +68,7 @@ export default function Review() {
       {
         description.split('\n').map((par) => {
           if(par.length > 0) {
-              return <p>{par}</p>;
+              return <p className='italic'>{par}</p>;
           }
 
           return null;

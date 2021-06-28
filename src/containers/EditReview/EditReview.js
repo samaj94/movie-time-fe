@@ -24,7 +24,7 @@ export default function EditPage() {
 
     async function onLoad() {
       try {
-        const review = await loadReview();
+        const { review } = await loadReview();
         setContentType(review.contentType);
         setDescription(review.description);
         setContentTitle(review.contentTitle);
@@ -82,6 +82,7 @@ export default function EditPage() {
           </Form.Control>  
         </Form.Group>
         <Form.Group size="sm" controlId="description">
+          <Form.Label>description</Form.Label>
           <Form.Control
             value={description}
             as="textarea"

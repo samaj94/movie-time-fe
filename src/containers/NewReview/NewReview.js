@@ -112,12 +112,14 @@ export default function NewReview() {
           </div>
         )
       }
+      <br />
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="rating">
-          <Form.Label>Rating: {fields.rating}</Form.Label>
+          <Form.Label>Rating: <span className="rating-item">{fields.rating}</span></Form.Label>
           <Form.Control type="range" min="0" max="10" step="0.5" value={fields.rating} onChange={handleFieldChange} />
         </Form.Group>
         <Form.Group controlId="contentType">
+          <Form.Label>type</Form.Label>
           <Form.Control
             as="select"
             value={fields.contentType}
@@ -128,6 +130,7 @@ export default function NewReview() {
           </Form.Control>  
         </Form.Group>
         <Form.Group size="sm" controlId="description">
+          <Form.Label>Description</Form.Label>
           <Form.Control
             value={fields.description}
             as="textarea"
